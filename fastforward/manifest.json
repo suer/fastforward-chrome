@@ -10,7 +10,7 @@
     }
   ],
   "permissions": [ "tabs", "http://*/*", "https://*/*" ],
-  "run_at": "document_start",
+  "run_at": "document_idle",
   "icons": {"16": "16x16.png",
             "48": "48x48.png"}
 }

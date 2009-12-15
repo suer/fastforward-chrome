@@ -1,25 +1,22 @@
 (function(document) {
 
 var scroll = 0;
-var height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-var pageEnd = false;
 
 var KEYS = {
   SPACE : 32
 };
 
-window.addEventListener("scroll", function() {
+document.addEventListener("scroll", function() {
   scroll = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
 });
 
 
-window.addEventListener("keypress", function(e) {
+document.addEventListener("keypress", function(e) {
+  var height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
   if (height != (scroll + document.documentElement.clientHeight)) {
-    console.log("yet");
     return;
   }
   if (e.keyCode == KEYS.SPACE) {
-    console.log("hoge");
     loadNext();
   }
 });
@@ -30,7 +27,7 @@ function loadNext() {
   for (var i = 0; i < aTagNum; i++) {
     if (isNextTag(aTags[i])) {
       console.log("found: " + i);
-      location.href = aTags[i].getAttribute("href");
+      document.location.href = aTags[i].getAttribute("href");
     }
   }
 }
