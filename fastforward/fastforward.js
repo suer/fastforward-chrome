@@ -1,23 +1,46 @@
 (function(document) {
 
-var scroll = 0;
+var shiftKeyPress = false;
 
 var KEYS = {
-  SPACE : 32
+  SPACE : 32,
+  SHIFT:16
 };
 
-document.addEventListener("scroll", function() {
-  scroll = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
-});
-
-
-document.addEventListener("keypress", function(e) {
-  var height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-  if (height != (scroll + document.documentElement.clientHeight)) {
+document.addEventListener("keydown", function(e) {
+  if (document.activeElement.tagName == "INPUT" || document.activeElement.tagName == "TEXTAREA") {
     return;
   }
-  if (e.keyCode == KEYS.SPACE) {
-    loadNext();
+  var scroll = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+  var height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+  var clientHeight = Math.min(document.documentElement.clientHeight, document.body.clientHeight);
+  if (height != (scroll + clientHeight)) {
+    return;
+  }
+  switch (e.keyCode) {
+    case KEYS.SPACE:
+      if (!shiftKeyPress) {
+        loadNext();
+      }
+      break;
+    case KEYS.SHIFT:
+      shiftKeyPress = true;
+      break;
+    default:
+      break;
+  }
+});
+
+document.addEventListener("keyup", function(e) {
+  if (document.activeElement.tagName == "INPUT" || document.activeElement.tagName == "TEXTAREA") {
+    return;
+  }
+  switch (e.keyCode) {
+    case KEYS.SHIFT:
+      shiftKeyPress = false;
+      break;
+    default:
+      break;
   }
 });
 
@@ -26,7 +49,6 @@ function loadNext() {
   var aTagNum = aTags.length;
   for (var i = 0; i < aTagNum; i++) {
     if (isNextTag(aTags[i])) {
-      console.log("found: " + i);
       document.location.href = aTags[i].getAttribute("href");
     }
   }

@@ -1,5 +1,5 @@
 {
-  "version": "0.1",
+  "version": "0.1.2",
   "name": "FastForward for Chrome",
   "description": "FastForward for Chrome",
   "update_url":"http://clients2.google.com/service/update2/crx",
@@ -10,7 +10,7 @@
     }
   ],
   "permissions": [ "tabs", "http://*/*", "https://*/*" ],
-  "run_at": "document_idle",
+  "run_at": "document_end",
   "icons": {"16": "16x16.png",
             "48": "48x48.png"}
 }
