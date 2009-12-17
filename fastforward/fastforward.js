@@ -45,13 +45,26 @@ document.addEventListener("keyup", function(e) {
 });
 
 function loadNext() {
+  var linkTags = document.getElementsByTagName("link");
+  var linkTagNum = linkTags.lengthl;
+  for (var i = 0; i < linkTagNum; i++) {
+    if (isNextLink(linkTags[i])) {
+      document.location.href = linkTags[i].getAttribute("href");
+    }
+  }
   var aTags = document.getElementsByTagName("a");
   var aTagNum = aTags.length;
-  for (var i = 0; i < aTagNum; i++) {
+
+  for (i = 0; i < aTagNum; i++) {
     if (isNextTag(aTags[i])) {
       document.location.href = aTags[i].getAttribute("href");
     }
   }
+}
+
+function isNextLink(tag) {
+  var rel = tag.getAttribute("rel");
+  return (rel != null && rel.toLowerCase() == "next");
 }
 
 function isNextTag(tag) {
