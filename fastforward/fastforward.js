@@ -14,7 +14,7 @@ document.addEventListener("keydown", function(e) {
   var scroll = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
   var height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
   var clientHeight = Math.min(document.documentElement.clientHeight, document.body.clientHeight);
-  if (height != (scroll + clientHeight)) {
+  if (height > (scroll + clientHeight)) {
     return;
   }
   switch (e.keyCode) {
@@ -46,7 +46,8 @@ document.addEventListener("keyup", function(e) {
 
 function loadNext() {
   var linkTags = document.getElementsByTagName("link");
-  var linkTagNum = linkTags.lengthl;
+  var linkTagNum = linkTags.length;
+
   for (var i = 0; i < linkTagNum; i++) {
     if (isNextLink(linkTags[i])) {
       document.location.href = linkTags[i].getAttribute("href");
