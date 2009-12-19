@@ -1,12 +1,13 @@
 {
-  "version": "0.1.4",
+  "version": "0.1.5",
   "name": "FastForward for Chrome",
   "description": "FastForward for Chrome",
   "update_url":"http://clients2.google.com/service/update2/crx",
   "content_scripts": [
     {
       "js": [ "fastforward.js", "nextwords.js" ],
-      "matches": [ "http://*/*", "https://*/*" ]
+      "matches": [ "http://*/*", "https://*/*" ],
+      "options_page": "options.html"
     }
   ],
   "permissions": [ "tabs", "http://*/*", "https://*/*" ],
@@ -14,4 +15,3 @@
   "icons": {"16": "16x16.png",
             "48": "48x48.png"}
 }
-        
