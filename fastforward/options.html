@@ -1,50 +1,85 @@
 <html>
-<head><title>My Test Extension Options</title></head>
+<head><title>FastForward for Chrome</title>
 <script type="text/javascript">
 
-// Saves options to localStorage.
 function save_options() {
-  var select = document.getElementById("color");
-  var color = select.children[select.selectedIndex].value;
-  localStorage["favorite_color"] = color;
+  var nextwordsTag = document.getElementById("nextwords");
+  var nexts = nextwordsTag.children;
+  var nexts_num = nexts.length;
+  var nextwords = "";
+  for (var i = 0; i < nexts_num; i++) {
+    if (nexts[i].firstChild.value == "") {
+      continue;
+    }
+    nextwords += nexts[i].firstChild.value + "\n";
+  }
+  localStorage["fffc_nextwords"] = nextwords;
+  console.log(nextwords);
+  console.log(localStorage["fffc_nextwords"])
 
-  // Update status to let user know options were saved.
   var status = document.getElementById("status");
-  status.innerHTML = "Options Saved.";
+  status.innerHTML = "<span style='color: red;'>Options Saved.</span>";
   setTimeout(function() {
     status.innerHTML = "";
-  }, 750);
+  }, 2000);
 }
 
-// Restores select box state to saved value from localStorage.
 function restore_options() {
-  var favorite = localStorage["favorite_color"];
-  if (!favorite) {
+  if (localStorage["fffc_nextwords"] == null) {
+    var nextwords = document.getElementById("nextwords");
+    var nextword = document.createElement("div");
+    nextword.id = "nextword"
+    var nexttext = document.createElement("input");
+    nexttext.id = "nexttext";
+    nextword.appendChild(nexttext);
+    nextwords.appendChild(nextword);
     return;
   }
-  var select = document.getElementById("color");
-  for (var i = 0; i < select.children.length; i++) {
-    var child = select.children[i];
-    if (child.value == favorite) {
-      child.selected = "true";
-      break;
+  var keywords = localStorage["fffc_nextwords"].split("\n");
+  var stored_keywords_num = keywords.length;
+  if (stored_keywords_num == 0) {
+    var nextwords = document.getElementById("nextwords");
+    var nextword = document.createElement("div");
+    nextword.id = "nextword"
+    var nexttext = document.createElement("input");
+    nexttext.id = "nexttext";
+    nextword.appendChild(nexttext);
+    nextwords.appendChild(nextword);
+  } else {
+    for (var i = 0; i < stored_keywords_num; i++) {
+      if (keywords[i] == null || keywords[i] == "") {
+        continue;
+      }
+      var nextwords = document.getElementById("nextwords");
+      var nextword = document.createElement("div");
+      nextword.class = "nextword"
+      var nexttext = document.createElement("input");
+      nexttext.class = "nexttext";
+      nexttext.value = keywords[i];
+      nextword.appendChild(nexttext);
+      nextwords.appendChild(nextword);
     }
   }
+}
+
+function add_option() {
+  var nextwords = document.getElementById("nextwords");
+  var nextword = document.createElement("div");
+  nextword.class = "nextword";
+  var nexttext = document.createElement("input");
+  nexttext.class = "nexttext";
+  nextword.appendChild(nexttext);
+  nextwords.appendChild(nextword);
 }
 
 </script>
 
 <body onload="restore_options()">
-
-Favorite Color:
-<select id="color">
- <option value="red">red</option>
- <option value="green">green</option>
- <option value="blue">blue</option>
- <option value="yellow">yellow</option>
-</select>
-
+<div id="nextwords">
+</div>
+<input id="addword" type="button" onclick="add_option()" value="add"/>
 <br>
 <button onclick="save_options()">Save</button>
+<span id="status"></span>
 </body>
 </html>

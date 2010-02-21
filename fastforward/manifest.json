@@ -6,12 +6,13 @@
   "content_scripts": [
     {
       "js": [ "fastforward.js", "nextwords.js" ],
-      "matches": [ "http://*/*", "https://*/*" ],
-      "options_page": "options.html"
+      "matches": [ "http://*/*", "https://*/*" ]
     }
   ],
   "permissions": [ "tabs", "http://*/*", "https://*/*" ],
   "run_at": "document_end",
   "icons": {"16": "16x16.png",
-            "48": "48x48.png"}
+            "48": "48x48.png"},
+  "options_page": "options.html",
+  "background_page": "background.html"
 }

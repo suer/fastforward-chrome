@@ -7,6 +7,13 @@ var KEYS = {
   SHIFT:16
 };
 
+var stored_keywords = null;
+chrome.extension.sendRequest({ "action" : "getNextWords", "args" : [ "nextwords" : "" ]} , function( response ){ 
+  stored_keywords = response.values["nextwords"] ; } 
+);
+
+
+
 document.addEventListener("keydown", function(e) {
   if (document.activeElement.tagName == "INPUT" || document.activeElement.tagName == "TEXTAREA") {
     return;
@@ -58,7 +65,7 @@ function loadNext() {
 
   for (i = 0; i < aTagNum; i++) {
     if (isNextTag(aTags[i])) {
-      document.location.href = aTags[i].getAttribute("href");
+//      document.location.href = aTags[i].getAttribute("href");
     }
   }
 }
@@ -70,6 +77,7 @@ function isNextLink(tag) {
 
 function isNextTag(tag) {
   var len = NextWords.length;
+  console.log(stored_keywords);
   for (var i = 0; i < len; i++) {
     if (tag.textContent.indexOf(NextWords[i]) >= 0) {
       return true;
