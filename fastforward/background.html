@@ -1,12 +1,11 @@
 <html>
 <head><title>FastForward for Chrome</title>
 <script type="text/javascript">
-
-chrome.extension.onRequest.addListener( function ( message , sender , sendResponse) {
-  sendResponse({
-    "nextwords" : localStorage["fffc_nextwords"]
-  }
-);
+chrome.extension.onRequest.addListener(
+  function (message, sender, sendResponse) {
+    if (message.name == "getNextWords") {
+      sendResponse({"nextwords" : localStorage["fffc_nextwords"]});
+    }
 });
 </script>
 </head>
