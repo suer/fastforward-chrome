@@ -1,0 +1,38 @@
+body {
+  background: -webkit-gradient(linear, left top, left bottom, from(#FEFEFE), to(#AAAAAA));
+}
+
+h1 {
+  font-size: 26pt;
+  margin-left: 100px;
+  margin-top: 50px;
+}
+
+.logo {
+  width: 52px;
+}
+
+#wrap {
+  font-size: 16pt;
+  border-color: black;
+  border-style: dotted;
+  margin-left: 100px;
+  padding-left: 50px;
+  width: 60%;
+}
+
+input {
+  font-size: 16pt;
+}
+
+#buttons {
+  margin-left: 150px;
+}
+
+#buttons button {
+  font-size: 16pt;
+}
+
+#status {
+  font-size: 16pt;
+}

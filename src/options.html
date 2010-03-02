@@ -1,5 +1,7 @@
 <html>
-<head><title>FastForward for Chrome</title>
+<head>
+<title>FastForward for Chrome</title>
+<link rel="stylesheet" href="fastforward.css" type="text/css" media="all">
 <script type="text/javascript">
 
 function save_options() {
@@ -52,7 +54,8 @@ function restore_options() {
       }
       var nextwords = document.getElementById("nextwords");
       var nextword = document.createElement("div");
-      nextword.class = "nextword"
+      nextword.class = "nextword";
+      nextword.setAttribute("class", "nextword");
       var nexttext = document.createElement("input");
       nexttext.class = "nexttext";
       nexttext.value = keywords[i];
@@ -66,6 +69,7 @@ function add_option() {
   var nextwords = document.getElementById("nextwords");
   var nextword = document.createElement("div");
   nextword.class = "nextword";
+  nextword.setAttribute("class", "nextword");
   var nexttext = document.createElement("input");
   nexttext.class = "nexttext";
   nextword.appendChild(nexttext);
@@ -75,11 +79,16 @@ function add_option() {
 </script>
 
 <body onload="restore_options()">
-<div id="nextwords">
-</div>
-<input id="addword" type="button" onclick="add_option()" value="add"/>
-<br>
-<button onclick="save_options()">Save</button>
-<span id="status"></span>
+  <h1><img class="logo" src="fastforward.png"/>FastForward Options</h1>
+  <fieldset id="wrap">
+    <legend>Key Words</legend>
+    <div id="nextwords">
+    </div>
+  </fieldset>
+  <div id="buttons">
+    <button id="addword" onclick="add_option()">Add</button>
+    <button onclick="save_options()">Save</button>
+    <span id="status"></span>
+  </div>
 </body>
 </html>
