@@ -1,6 +1,7 @@
 <html>
 <head>
 <title>FastForward for Chrome</title>
+<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
 <link rel="stylesheet" href="fastforward.css" type="text/css" media="all">
 <script type="text/javascript">
 
@@ -16,8 +17,6 @@ function save_options() {
     nextwords += nexts[i].firstChild.value + "\n";
   }
   localStorage["fffc_nextwords"] = nextwords;
-  console.log(nextwords);
-  console.log(localStorage["fffc_nextwords"])
 
   var status = document.getElementById("status");
   status.innerHTML = "<span style='color: red;'>Options Saved.</span>";

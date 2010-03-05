@@ -1,21 +1,14 @@
 <html>
+<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
 <head><title>FastForward for Chrome</title>
 <script type="text/javascript">
-var DefaultNextWords = [
-  "next",
-  "Next",
-  "&#187;",
-  "more",
-  "次へ",
-  "次の",
-  "次を",
-  "次ページ",
-  ">>"
-];
+
 chrome.extension.onRequest.addListener(
   function (message, sender, sendResponse) {
     var nextwords = "";
     if (localStorage["fffc_nextwords"] == null || localStorage["fffc_nextwords"].length == 0) {
+      console.log(localStorage["fffc_nextwords"]);
+
       for (var i = 0; i < DefaultNextWords.length; i++) {
         nextwords += DefaultNextWords[i] + "\n";
       }

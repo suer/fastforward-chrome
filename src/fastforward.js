@@ -92,6 +92,13 @@ chrome.extension.sendRequest({name: "getNextWords"},
         return true;
       }
     }
+    len = DefaultNextWords.length;
+    for (var i = 0; i < len; i++) {
+      if (tag.textContent.indexOf(DefaultNextWords[i]) >= 0) {
+        return true;
+      }
+    }
+
     return false;
   }
   });
