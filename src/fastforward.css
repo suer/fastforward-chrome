@@ -21,7 +21,7 @@ h1 {
 }
 
 input {
-  font-size: 16pt;
+  font-size: 14pt;
 }
 
 #buttons {
@@ -29,9 +29,5 @@ input {
 }
 
 #buttons button {
-  font-size: 16pt;
-}
-
-#status {
-  font-size: 16pt;
+  font-size: 14pt;
 }
