@@ -1,83 +1,10 @@
 <html>
 <head>
-<title>FastForward for Chrome</title>
-<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+<title>FastForward for Chrome</title></head>
 <link rel="stylesheet" href="fastforward.css" type="text/css" media="all">
-<script type="text/javascript">
+</head>
 
-function save_options() {
-  var nextwordsTag = document.getElementById("nextwords");
-  var nexts = nextwordsTag.children;
-  var nexts_num = nexts.length;
-  var nextwords = "";
-  for (var i = 0; i < nexts_num; i++) {
-    if (nexts[i].firstChild.value == "") {
-      continue;
-    }
-    nextwords += nexts[i].firstChild.value + "\n";
-  }
-  localStorage["fffc_nextwords"] = nextwords;
-
-  var status = document.getElementById("status");
-  status.innerHTML = "<span style='color: red;'>Options Saved.</span>";
-  setTimeout(function() {
-    status.innerHTML = "";
-  }, 2000);
-}
-
-function restore_options() {
-  if (localStorage["fffc_nextwords"] == null) {
-    var nextwords = document.getElementById("nextwords");
-    var nextword = document.createElement("div");
-    nextword.id = "nextword"
-    var nexttext = document.createElement("input");
-    nexttext.id = "nexttext";
-    nextword.appendChild(nexttext);
-    nextwords.appendChild(nextword);
-    return;
-  }
-  var keywords = localStorage["fffc_nextwords"].split("\n");
-  var stored_keywords_num = keywords.length;
-  if (stored_keywords_num == 0) {
-    var nextwords = document.getElementById("nextwords");
-    var nextword = document.createElement("div");
-    nextword.id = "nextword"
-    var nexttext = document.createElement("input");
-    nexttext.id = "nexttext";
-    nextword.appendChild(nexttext);
-    nextwords.appendChild(nextword);
-  } else {
-    for (var i = 0; i < stored_keywords_num; i++) {
-      if (keywords[i] == null || keywords[i] == "") {
-        continue;
-      }
-      var nextwords = document.getElementById("nextwords");
-      var nextword = document.createElement("div");
-      nextword.class = "nextword";
-      nextword.setAttribute("class", "nextword");
-      var nexttext = document.createElement("input");
-      nexttext.class = "nexttext";
-      nexttext.value = keywords[i];
-      nextword.appendChild(nexttext);
-      nextwords.appendChild(nextword);
-    }
-  }
-}
-
-function add_option() {
-  var nextwords = document.getElementById("nextwords");
-  var nextword = document.createElement("div");
-  nextword.class = "nextword";
-  nextword.setAttribute("class", "nextword");
-  var nexttext = document.createElement("input");
-  nexttext.class = "nexttext";
-  nextword.appendChild(nexttext);
-  nextwords.appendChild(nextword);
-}
-
-</script>
-
-<body onload="restore_options()">
+<body>
   <h1><img class="logo" src="fastforward.png"/>FastForward Options</h1>
   <fieldset id="wrap">
     <legend>Key Words</legend>
@@ -85,9 +12,14 @@ function add_option() {
     </div>
   </fieldset>
   <div id="buttons">
-    <button id="addword" onclick="add_option()">Add</button>
-    <button onclick="save_options()">Save</button>
-    <span id="status"></span>
+    <input id="debug" type="checkbox"> Debug Mode<p/>
+    <button id="addword">Add</button>
+    <button id="save">Save</button>
+    <button id="reset">Reset to defaults</button>
   </div>
 </body>
+
+<script src="nextwords.js"></script>
+<script src="common.js"></script>
+<script src="options.js"></script>
 </html>

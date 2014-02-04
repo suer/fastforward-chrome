@@ -1,24 +1,9 @@
 <html>
 <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
 <head><title>FastForward for Chrome</title>
-<script type="text/javascript">
-
-chrome.extension.onRequest.addListener(
-  function (message, sender, sendResponse) {
-    var nextwords = "";
-    if (localStorage["fffc_nextwords"] == null || localStorage["fffc_nextwords"].length == 0) {
-      console.log(localStorage["fffc_nextwords"]);
-
-      for (var i = 0; i < DefaultNextWords.length; i++) {
-        nextwords += DefaultNextWords[i] + "\n";
-      }
-      localStorage["fffc_nextwords"] = nextwords;
-    }
-    if (message.name == "getNextWords") {
-      sendResponse({"nextwords" : localStorage["fffc_nextwords"]});
-    }
-});
-</script>
+<script src="nextwords.js"/></script>
+<script src="common.js"/></script>
+<script src="background.js"/></script>
 </head>
 <body>
 </body>
